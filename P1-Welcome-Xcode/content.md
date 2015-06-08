@@ -1,10 +1,10 @@
 ---
 title: "Welcome to Xcode"
 slug: welcome-xcode
----     
+---
 
-Xcode is Apple’s integrated development environment (IDE). Xcode includes a source editor, a graphical user interface editor, and many other features. 
-It's a fantastic development tool for iOS development and one that you will be making frequent use of, you've only just scratched the surface while 
+Xcode is Apple’s integrated development environment (IDE). Xcode includes a source editor, a graphical user interface editor, and many other features.
+It's a fantastic development tool for iOS development and one that you will be making frequent use of, you've only just scratched the surface while
 experimenting in the Swift Playground.
 
 If you would like to learn more about Xcode in general, then Apple has you covered. [developer.apple.com/xcode](https://developer.apple.com/xcode/)
@@ -26,7 +26,7 @@ You will then be presented with the following project options:
 
 ![image](xcode_started_2.png)
 
-As you can see there are a lot of options hoewver let's take it easy and start off by selecting `Single View Application` and select *Next*.
+As you can see there are a lot of options however let's take it easy and start off by selecting `Single View Application` and select *Next*.
 
 ##Project Options
 
@@ -34,7 +34,7 @@ You will now be presented with the new project options:
 
 ![image](xcode_project.png)
 
-Feel free to give it whatever ProductName or Orginization Name you like, it's your project after all. 
+Feel free to give it whatever Product Name or Organization Name you like, it's your project after all.
 Please ensure you selected *Swift* as the choice for *Language*, then select *Next*.
 
 ##Source Control

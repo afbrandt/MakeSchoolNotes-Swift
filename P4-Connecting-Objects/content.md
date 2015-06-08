@@ -1,19 +1,19 @@
 ---
 title: "Connecting Objects"
 slug: connecting-objects
----     
+---
 
-The time has finally come to start connecting the dots and connect objects from the Interface Builder to our own code. 
+The time has finally come to start connecting the dots and connect objects from the Interface Builder to our own code.
 Your code will connect with interface objects through *IBAction* and *IBOutlet* connections.
 
 ##Actions
 
 You will create an `IBAction` when you need to send a message from an object to your code, a good example is when a user clicks a button.  This action by the user
-will send a message to execute the function that you connected to. 
+will send a message to execute the function that you connected to.
 
 > [action]
 > Open `ViewController.swift` and ensure your code reads as follows:
-> 
+>
 >
     class ViewController: UIViewController {
 >
@@ -21,19 +21,19 @@ will send a message to execute the function that you connected to.
             super.viewDidLoad()
             // Do any additional setup after loading the view, typically from a nib.
         }
->    
+>
         override func didReceiveMemoryWarning() {
             super.didReceiveMemoryWarning()
             // Dispose of any resources that can be recreated.
         }
->    
+>
         // Let's handle the button
         @IBAction func buttonTapped(sender: AnyObject) {
             println("Ouch")
         }
     }
 
-Great you have created a new function that prints out a line of text to our debug window, however by adding the `@IBAction` attribute to the function defintion it will now be accessible 
+Great you have created a new function that prints out a line of text to our debug window, however by adding the `@IBAction` attribute to the function defintion it will now be accessible
 to the Interface Builder.  Notice the little empty circle in the code editor to the left of this function defintion...
 
 > [action]
@@ -47,9 +47,9 @@ If you don't see the view shown above, you will need to change the right panel b
 ##Connecting an Action
 
 You now want to Connect your `IBAction` to the `Button`
- 
+
 > [action]
-> *Control-Click* onto the circle beside the `@IBAction` and drag across to your `Button` you will see a light blue line as you 
+> *Control-Click* onto the circle beside the `@IBAction` and drag across to your `Button` you will see a light blue line as you
 drag across, then let go.
 >
 > ![image](ibaction_connection_2.png)
@@ -74,7 +74,7 @@ You will want to use an *IBOutlet* to enable your code to send a message to your
 Time to try this out for yourself, see if you can:
 
 > [action]
-> 1. Add a label to your View 
+> 1. Add a label to your View
 > 2. Create a variable with attribute *IBOutlet* in your `ViewController` class that you will connect to your *UILabel*
 > 3. Connect your View's Label to your code's label variable.
 > 4. Have the label text change upon pressing the button.
@@ -83,7 +83,7 @@ Time to try this out for yourself, see if you can:
 Your view *ViewController* should look something like this:
 ```
 class ViewController: UIViewController {
-    
+
     @IBOutlet var label: UILabel!
 
     ...
@@ -104,7 +104,7 @@ Have some fun, create other objects in your *View* and connect them. Best way to
 
 ##Debugging
 
-Sometimes things go wrong in development, at times it can be challenging to find out why a certain piece of code isn't working.  Xcode has a nice Debugger and it's realtivley easy to use.
+Sometimes things go wrong in development, at times it can be challenging to find out why a certain piece of code isn't working.  Xcode has a nice Debugger and it's relatively easy to use.
 
 Let's jump in and add a breakpoint.
 
@@ -114,7 +114,7 @@ Let's jump in and add a breakpoint.
 
 ![image](breakpoint_1.png)
 
-Time to see it in action. 
+Time to see it in action.
 
 <div class="action"></div>
 1. Run your App
@@ -148,7 +148,7 @@ This is because although the code has updated the labels text value, the App sti
 <div class="action"></div>
 1. Select `Continue Program Execution` it's the button beside `Step Over`
 
-The App will resume running again and you will notice your Label has been udpated.  If you select the button again, the breakpoint will be triggered and you will be taken back to the debug mode as before.
+The app will resume running again and you will notice your label has been udpated.  If you select the button again, the breakpoint will be triggered and you will be taken back to the debug mode as before.
 
 We have touched briefly on a lot of different key areas, the best way to improve is to practice, practice, pracice...
 

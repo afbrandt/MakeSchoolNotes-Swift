@@ -1,7 +1,7 @@
 ---
 title: "Introduction Table Views"
 slug: introduction-table-views
----     
+---
 
 Table Views are frequently found in iOS apps. I'm sure you will have seen them many times.
 
@@ -21,7 +21,7 @@ On the right hand side you can see the *Table View* inside the `View Controller`
 
 ![image](viewcontroller_table_view.png)
 
-Ensure you have expanded *Document Outline*: 
+Ensure you have expanded *Document Outline*:
 
 ![image](tableview_outline.png)
 
@@ -31,25 +31,25 @@ You can inspect see the object hierarchy for our main `View Controller` which co
  - `Table View`
    - `Table View Cell`
      - `Content View`
-     
+
 I always encourage developers to look at new objects under the various *Inspector* tabs.
 
 You may have noticed if you click on the `View Controller` and inspect under the *Identity Inspector* it is using a custom class of **NotesViewController**, you will be expanding
 on this class very soon.
- 
+
 We will come back to this very shortly however let's look at the other `Controller` in our Storyboard.
- 
+
 ##Navigation Controller
- 
+
 What is a *Navigation Controller*? Well there is a big clue in the name :)
 
 The *Navigation Controller* manages a stack of view controllers, it provides a drill-down interface for hierarchical content. It often goes hand in hand with Table Views, for example
 look at the *Photos* App. Click `Albums` to take you into a View Controller that presents the UITableView, click a row and it this opens a View Controller to display image thumbnails, drill down again and you go into another View Controller that will preview the image.
 
-Notice when you are *Navigating* the app you will always have at the top of your app a `Navigation Bar` provided by the `Navigation Controller` that sits at the root of your app, this enables 
+Notice when you are *Navigating* the app you will always have at the top of your app a `Navigation Bar` provided by the `Navigation Controller` that sits at the root of your app, this enables
 you to perform actions such as *Back* that help manage your stack of view controllers.
 
- 
+
 ##Delegates & Data Sources
 
 You have a Table View however it's not much use without any content, so let's get started.  You want to be able to access your Table View progrmatically so you will need to create
@@ -63,7 +63,7 @@ It should look something like this:
 
 ```
 class NotesViewController: UIViewController {
-    
+
     @IBOutlet weak var tableView: UITableView!
 ```
 
@@ -72,7 +72,7 @@ If you did it without looking, give yourself a smile.
 Great you now have a place to connect your Table View.
 
 <div class="action"></div>
-1. Go back into *Main.Storyboard* and select the `Table View` inside the `Home Scene`. 
+1. Go back into *Main.Storyboard* and select the `Table View` inside the `Home Scene`.
 2. With this selected click on the *Connections Inspector* and look at `Referencing Outlets`
 3. Create a `New Referencing Outlet` to your ViewController (Home with the yellow circle just below 'Home Scene')
 
@@ -88,10 +88,10 @@ Let's change the View Controller name while we are at it.
 <div class="action"></div>
 Click on *Home* and then press *Enter* and rename to `Dashboard`
 
-Great your Table View is now connected to tabelView variable in `NotesViewController`. 
+Great your Table View is now connected to tableView variable in `NotesViewController`.
 So Hit run!
 
-Oh it looks exactly the same, well you havn't added any data and before it can display anything the tableView needs a data source and also requires delegate functions
+Oh it looks exactly the same, well you haven't added any data and before it can display anything the tableView needs a data source and also requires delegate functions
 to be setup before it will run.
 
 **Data Source**
@@ -126,41 +126,41 @@ OK great so how do I add this protocol support for `UITableViewDataSource`?
 
 **Extensions**
 
-Glad you asked, you can extend support to your existing class an *Extension*. Extensions can add new functionality however they can't override existing functionality. 
+Glad you asked, you can extend support to your existing class with an *Extension*. Extensions can add new functionality however they can't override existing functionality.
 In this case you will be extending your class to implement the additional protocol functionality.
 
-Before we add this code 
+Before we add this code
 
 <div class="action"></div>
 Add the following snippet after the closing squiggly bracket on you `NotesViewController` class definition. Your class should now look as follows:
 
 ```
 extension NotesViewController: UITableViewDataSource {
-    
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("NoteCell", forIndexPath: indexPath) as! NoteTableViewCell
 
         let row = indexPath.row
         cell.textLabel?.text = "Hello World"
-        
+
         return cell
     }
-    
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
-    
+
 }
 ```
 
 Don't run it just yet, Swift is still a bit sad.
 
-A handy hint to find out more information for any function is to Alt-Click to see a description from the Apple Library Documentation. 
-Try it out now on your newly added `func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int` function. 
+A handy hint to find out more information for any function is to Alt-Click to see a description from the Apple Library Documentation.
+Try it out now on your newly added `func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int` function.
 
 ![image](table_view_protocol_lookup.png)
 
-If you look at the first line in the first function which is used to populate the TableViewCells with information. 
+If you look at the first line in the first function which is used to populate the TableViewCells with information.
 
 ```
 let cell = tableView.dequeueReusableCellWithIdentifier("NoteCell", forIndexPath: indexPath) as! NoteTableViewCell
@@ -170,7 +170,7 @@ This code is trying to return a `UITableViewCell` with a unique identifier of "N
 *dequeueReusableCellWithIdentifier* is trying to make this process more efficent, try and find a reusable cell first and save on additional initializing overhead.  
 If none exist, which will be the case when we run our app the it will create new `UITableViewCells` and in our case we are going to use our own custom subclass of `NoteTableViewCell`.
 
-Have a look at the code in `NoteTabelViewCell` right now it doesn't do anything more than a standard `UITableViewCell`, as I'm sure you've guessed, you will be adding to this soon.
+Have a look at the code in `NoteTableViewCell` right now it doesn't do anything more than a standard `UITableViewCell`, as I'm sure you've guessed, you will be adding to this soon.
 
 Let's quickly fix our `Table View Cell`.
 
@@ -227,7 +227,7 @@ Hopefully yours will look something like this, ideally with a bit more swag than
 ![image](notecell_custom_2.png)
 
 Great, now you want to ensure you can access the label objects from your `NoteTableViewCell` object.  
-Let's see if you can do this one on your own, you will want to create two Outlet variables of type `UILabel` in `NoteTableViewCell.swift` and then 
+Let's see if you can do this one on your own, you will want to create two Outlet variables of type `UILabel` in `NoteTableViewCell.swift` and then
 connect the `Custom Cell View` label objects respectivley in IB.
 
 <div class="solution" title="Adding Cell Outlets"></div>
@@ -235,10 +235,10 @@ Open `NoteTableViewCell.swift` and add the following.
 
 ```
 class NoteTableViewCell: UITableViewCell {
-    
+
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    
+
 }
 ```
 

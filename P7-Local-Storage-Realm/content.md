@@ -1,7 +1,7 @@
 ---
 title: "Local Storage with Realm"
 slug: local-storage-realm
----     
+---
 
 We have taken first steps of building a Notes App together, you can now create your own custom table view listing and populate it with some basic test data.
 
@@ -23,7 +23,7 @@ Hold up... This sounds like it could be painful...
 Thankfully this is an age old problem with many differnent solutions, Apple offers you [Core Data](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreData/Articles/cdTechnologyOverview.html) as a complete framework for object graph management.
 It can be a great solution however it is also a lot of work :)
 
-Let's look at a lightweight alternative called Realm. 
+Let's look at a lightweight alternative called Realm.
 
 ##Realm
 
@@ -39,7 +39,7 @@ Seriously let's take it for a spin. Time to implement Realm into our `Note` obje
 import Foundation
 import Realm
 
-class Note : RLMObject { 
+class Note : RLMObject {
 }
 ```
 
@@ -47,7 +47,7 @@ So we've dynamically imported the Realm library so we have access to this functi
 Realm objects are just like normal object, you just subclass *RLMObject* to get started.
 
 Let's add some variables to create our `Note` model class.
- 
+
 ```
 dynamic var title: String = ""
 dynamic var content: String = ""
@@ -65,17 +65,17 @@ Time to knuckle down, it's going to take a little bit of coding to switch over t
 Time to open `NoteTableViewCell.swift` and enter the following code:
 ```
 class NoteTableViewCell: UITableViewCell {
-    
+
     // initialize the date formatter only once, using a static computed property
     static var dateFormatter: NSDateFormatter = {
         var formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
         }()
-    
+
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    
+
     var note: Note? {
         didSet {
             if let note = note, titleLabel = titleLabel, dateLabel = dateLabel {
@@ -84,21 +84,22 @@ class NoteTableViewCell: UITableViewCell {
             }
         }
     }
-    
+
 }
 ```
 
-**Code Optimisation**
-Wow what is with `static var dateFormatter` well glad you asked, this is a code optimisation for a `NSDateFormatter` object, some objects are nortiously slow to initialize so you want to be able to reuse them instead.
-When I say 'slow' this is a very relative term however if you are processing hundreds of objects, it all adds up and if it only takes a few lines of code to optimise then it's time well spent.
+**Code Optimization**
 
-I wouldn't expect you at this stage to start worrying about optimisations, focus on your application experience first.  However it's good to know there is always a little extra juice 
+Wow what is with `static var dateFormatter` well glad you asked, this is a code optimization for a `NSDateFormatter` object, some objects are notoriously slow to initialize so you want to be able to reuse them instead.
+When I say 'slow' this is a very relative term however if you are processing hundreds of objects, it all adds up and if it only takes a few lines of code to optimize then it's time well spent.
+
+I wouldn't expect you at this stage to start worrying about optimizations, focus on your application experience first.  However it's good to know there is always a little extra juice
 that can be squeezed out of an app, this comes with experience.
 
 **didSet**
 
-So you've added a variable to store the `Note` object, what is didSet? Well it's a rather handy bit of functionality that will be called whenever this `note` object is modified. 
-For example if it gets edited anwyhere, this function will be called that will updated the OutLet labels and therefore update the `NoteCell` in our list.
+So you've added a variable to store the `Note` object, what is didSet? Well it's a rather handy bit of functionality that will be called whenever this `note` object is modified.
+For example if it gets edited anwyhere, this function will be called that will updated the Outlet labels and therefore update the `NoteCell` in our list.
 
 ##Notes Collection
 
@@ -146,7 +147,7 @@ realm.transactionWithBlock() { // 2
 2. Write operations must be performed within a real transaction.
 3. Add your new note to realm
 
-Easy! 
+Easy!
 
 <div class="action"></div>
 Finally before the closing squiggley of `viewDidLoad()` let's update `notes` with our new data.
