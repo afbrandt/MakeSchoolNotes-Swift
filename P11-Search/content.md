@@ -53,6 +53,7 @@ Add the following function to the `NotesViewController` class:
 This should be fairly clear to read, if the string in the search bar is found in either the title or content of a note, then return that note as part of the result set.
 
 **Search Delegate**
+
 Now we need our app to know when we are modifying our search bar, this is where the `UISearchBarDelegate` comes into play, add the follow extension to the `NotesViewController`
 
     extension NotesViewController: UISearchBarDelegate {
@@ -109,12 +110,12 @@ Ensure your `state` variable definition looks as follows:
         }
     }
 
-- 1) We have moved our default date search code so whenever we return to default state we want to ensure the list is reset.
-- 2) This returns the navigation bar in an animated fashion, you can see why it was hidden in point 6
-- 3) Remove keyboard popup
-- 4) Animate in a cancel button beside the search bar (UI Polish)
-- 5) Perform search on any text entered in search bar
-- 6) This makes the search bar take prominence in our view, by hiding the navigation bar the user is focused on search. (UI Polish)
+- We have moved our default date search code so whenever we return to default state we want to ensure the list is reset.
+- This returns the navigation bar in an animated fashion, you can see why it was hidden in point 6
+- Remove keyboard popup
+- Animate in a cancel button beside the search bar (UI Polish)
+- Perform search on any text entered in search bar
+- This makes the search bar take prominence in our view, by hiding the navigation bar the user is focused on search. (UI Polish)
 
 Run the App again, looking good!
 
